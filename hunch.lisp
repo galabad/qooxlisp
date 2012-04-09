@@ -17,9 +17,9 @@
 (defmethod backend-debug-off ((backend hunchentoot-backend)))
 
 (defmethod start-backend ((backend hunchentoot-backend) &key port)
-  (let ((ac (make-instance 'hunchentoot:acceptor :port port)))
+    (setf ac (make-instance 'hunchentoot:easy-acceptor :port port)) 
     (hunchentoot:start ac)
-    (setf (acceptor backend) ac)))
+    (setf (acceptor backend) ac))
 
 (defmethod backend-publish-file ((backend hunchentoot-backend)
                                  &key port path file)
